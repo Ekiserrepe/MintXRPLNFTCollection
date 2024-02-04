@@ -203,15 +203,11 @@ async function main() {
         console.log("Asking summiting tx ",y)
         console.log(tx.result);
     }
-    console.log("Mint is over. Wait 10 seconds until continue...");
+    console.log("Mint is over. Wait 10 seconds until continue with offers...");
    
     
     //Start create offers
     await wait(10000);
-  /*  const account_info = await client.request({
-        "command": "account_info",
-        "account": my_wallet.address
-      })*/
 console.log('Created account_info')
     const nfts = await client.request({
         method: "account_nfts",
@@ -224,8 +220,6 @@ console.log('Created account_info')
     console.log('Maker created')
     console.log('marker',marker)
     while(marker) {
-        
-        console.log(`I'm in the while of the maker`)
         nfts.result.marker=marker
         console.log('nfts.ledger_index',nfts.ledger_index)
         nfts.ledger_index = nfts.result.ledger_current_index
@@ -267,7 +261,7 @@ console.log('Created account_info')
             const tx =  await client.submit(transactionBlob, { wallet: my_wallet} )
             console.log('tx',i,tx)
             console.log('tx.result',i,tx.result)
-            console.log("Asking submit for the NFT: ",i,allNfts[i].NFTokenID)
+            console.log("Asking submit for the NFT offer: ",i,allNfts[i].NFTokenID)
            
         }
     }
